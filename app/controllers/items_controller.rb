@@ -4,13 +4,13 @@ class ItemsController < ApplicationController
   # GET /items showing list of files at sftp heroku.
   def index
     @items = Item.all
-    sftptogo_url = 'sftp://9011651f745182e96b53087197a896:gxnkc74p9xowl3pibxp2czk7n8r51oamvss2r216@sparkling-water-50295.sftptogo.com'
+    sftptogo_url = ''
     begin
       uri = URI.parse(sftptogo_url)
       rescue URI::InvalidURIError
       puts 'Bad SFTPTOGO_URL'
     end
-    uri = URI.parse('sftp://9011651f745182e96b53087197a896:gxnkc74p9xowl3pibxp2czk7n8r51oamvss2r216@sparkling-water-50295.sftptogo.com')
+    uri = URI.parse(''')
     sftp = SftpController.new(uri.host, uri.user, password: uri.password)
     sftp.connect
     # sftp.download_file('/', '/Docs/')
@@ -26,13 +26,13 @@ class ItemsController < ApplicationController
   # GET /items/1 #downloading file with id
   def show
     @item = Item.find(params[:id])
-    sftptogo_url = 'sftp://9011651f745182e96b53087197a896:gxnkc74p9xowl3pibxp2czk7n8r51oamvss2r216@sparkling-water-50295.sftptogo.com'
+    sftptogo_url = '''
     begin
       uri = URI.parse(sftptogo_url)
       rescue URI::InvalidURIError
       puts 'Bad SFTPTOGO_URL'
     end
-    uri = URI.parse('sftp://9011651f745182e96b53087197a896:gxnkc74p9xowl3pibxp2czk7n8r51oamvss2r216@sparkling-water-50295.sftptogo.com')
+    uri = URI.parse('sftp:/'ogo.com')
     sftp = SftpController.new(uri.host, uri.user, password: uri.password)
     sftp.connect
     sftp.download_file(@item.name)
