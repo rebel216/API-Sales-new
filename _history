@@ -1,0 +1,2 @@
+User.create!(email: 'neerajbhardwajpkt@gmail.com' , password: 'Rebel123@' , password_confirmation: 'Rebel123@')
+exit
