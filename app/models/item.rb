@@ -1,3 +1,3 @@
 class Item < ApplicationRecord
-    has_one_attached:documents
+    has_one_attached:document
 end

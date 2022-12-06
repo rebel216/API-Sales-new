@@ -7,6 +7,7 @@ class ItemsController < ApplicationController
     Item.destroy_all
     @items = Item.all
     sftptogo_url = ENV['SFTPTOGO_URL']
+    # sftptogo_url = 'sftp://9011651f745182e96b53087197a896:gxnkc74p9xowl3pibxp2czk7n8r51oamvss2r216@sparkling-water-50295.sftptogo.com'
     begin
       uri = URI.parse(sftptogo_url)
       rescue URI::InvalidURIError
@@ -41,7 +42,7 @@ class ItemsController < ApplicationController
     sftp.download_file(@item.name)
     sftp.disconnect
     @item.document.attach(io:File.open('tmp/storage'+@item.name),filename: @item.name ,content_type:'application/all')
-    @item.file = url_for(@item.document)
+    @item.description = url_for(@item.document)
     
     render json:@item
     
