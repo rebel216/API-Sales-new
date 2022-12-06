@@ -7,7 +7,8 @@ ruby "3.1.1"
 gem "rails", "~> 7.0.4"
 
 # Use sqlite3 as the database for Active Record
-gem "sqlite3", "~> 1.4"
+ gem 'sqlite3', group: :development
+ gem 'pg', group: :production
 
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", "~> 5.0"
@@ -17,7 +18,7 @@ gem 'simple_command'
 gem 'net-sftp'
 gem 'carrierwave'
 gem 'dotenv'
-
+ gem 'rails_12factor', group: :production
 
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 # gem "jbuilder"
