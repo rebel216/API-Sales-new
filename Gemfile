@@ -16,7 +16,7 @@ gem 'jwt'
 gem 'simple_command'
 gem 'net-sftp'
 gem 'carrierwave'
-gem 'dotenv-rails', groups: [:development, :test]
+gem 'dotenv'
 
 
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
