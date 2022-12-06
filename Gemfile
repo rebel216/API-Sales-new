@@ -18,7 +18,7 @@ gem 'simple_command'
 gem 'net-sftp'
 gem 'carrierwave'
 gem 'dotenv'
-
+gem 'rails_12factor', group: :production
 
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 # gem "jbuilder"
