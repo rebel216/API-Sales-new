@@ -17,14 +17,8 @@ class SftpController < ApplicationController
     end
 
     def download_file(name)
-        @sftp_client.download!("/"+name, "public/"+name) 
-        # data = open("/Users/anomaly/api-pdf/Docs/"+name) 
-        # @item = Item.create(name:name ,description:"/Docs/"+name,file:{url:"Docs/"+name})
-        # render json:"data #{data.read}"
-        # send_file "/Users/anomaly/api-pdf/Docs/"+name
-        # data = File.open("/Users/anomaly/api-pdf/Docs/"+name)
-        # view_file = Rails.root.join("/Docs/", name).to_s
-        # render json: data.read
+        @sftp_client.download!("/"+name, "tmp/storage"+name) 
+        
         
     end
 

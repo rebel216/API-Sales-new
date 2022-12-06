@@ -2,9 +2,13 @@ require_relative "boot"
 require 'net/sftp'
 require 'uri'
 require "rails/all"
+require 'dotenv/load'
+
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
+
+
 
 module ApiPdf
   class Application < Rails::Application
