@@ -18,7 +18,7 @@ gem 'simple_command'
 gem 'net-sftp'
 gem 'carrierwave'
 gem 'dotenv'
-
+gem 'rest-client'
 
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 # gem "jbuilder"

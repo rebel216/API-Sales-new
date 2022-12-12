@@ -3,11 +3,9 @@ class ItemsController < ApplicationController
   
   # GET /items showing list of files at sftp heroku.
   def index
-    Item.delete_all
-    Item.destroy_all
+    
     @items = Item.all
     sftptogo_url = ENV['SFTPTOGO_URL']
-    # sftptogo_url = 'sftp://9011651f745182e96b53087197a896:gxnkc74p9xowl3pibxp2czk7n8r51oamvss2r216@sparkling-water-50295.sftptogo.com'
     begin
       uri = URI.parse(sftptogo_url)
       rescue URI::InvalidURIError
@@ -31,6 +29,7 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
     sftptogo_url = ENV['SFTPTOGO_URL']
     
+    
     begin
       uri = URI.parse(sftptogo_url)
       rescue URI::InvalidURIError
@@ -42,10 +41,11 @@ class ItemsController < ApplicationController
     sftp.download_file(@item.name)
     sftp.disconnect
     @item.document.attach(io:File.open('tmp/storage'+@item.name),filename: @item.name ,content_type:'application/all')
-    @item.description = url_for(@item.document)
-    
-    render json:@item
-    
+    # @item.file = url_for(@item.document)
+    file =Base64.encode64(File.read('tmp/storage'+@item.name))
+    @item.file = file
+    render json:@item 
+    # RestClient.post( 'http://localhost:3000/items/',file:file )
   end
 
   # POST /items
@@ -64,8 +64,8 @@ class ItemsController < ApplicationController
   def destroy 
     # @items = Item.all
     # @item = Item.Fin(params[:id])
-    # @item.destroy   
-    # Item.delete_all
+    @item.destroy   
+    Item.delete_all
   end
 
   def download
