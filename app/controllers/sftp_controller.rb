@@ -27,8 +27,18 @@ class SftpController < ApplicationController
         puts 'inside directory'
         @sftp_client.dir.foreach(remote_path) do |entry|
             puts"asdasgjdgajhksdgfkladgfldgafkasjdfgh;oqwefbwefvg"
-            puts entry
-            @item = Item.create(name:entry.name ,description:"/"+entry.name)
+            @file_date = entry.name.split('.')
+            @file_date = @file_date[3]
+            @year = Date.today.strftime('%y')
+            @year = @year.slice(0,2)
+            puts @year
+            @date = Date.today.strftime('%m%d'+@year)
+            puts @file_date
+            puts @date
+            if @file_date == @date
+                puts "equal"
+                @item = Item.create(name:entry.name ,description:"/"+entry.name)
+            end
         end
                
     end
