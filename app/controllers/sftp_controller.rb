@@ -18,14 +18,16 @@ class SftpController < ApplicationController
 
     def download_file(name)
         @sftp_client.download!("/"+name, "tmp/storage"+name) 
-        
+        Item.delete_all
+        Item.destroy_all
         
     end
 
     def list_files(remote_path,local_path)
         puts 'inside directory'
         @sftp_client.dir.foreach(remote_path) do |entry|
-            puts entry.name
+            puts"asdasgjdgajhksdgfkladgfldgafkasjdfgh;oqwefbwefvg"
+            puts entry
             @item = Item.create(name:entry.name ,description:"/"+entry.name)
         end
                

@@ -3,7 +3,8 @@ class ItemsController < ApplicationController
   
   # GET /items showing list of files at sftp heroku.
   def index
-    
+    # @items.destroy   
+    Item.delete_all
     @items = Item.all
     sftptogo_url = ENV['SFTPTOGO_URL']
     begin
@@ -19,6 +20,14 @@ class ItemsController < ApplicationController
     # disconnect
     
     sftp.disconnect
+    puts "askjdalisgjdkljhgadsfkagsdkjfgldsafgkldgafkjgdakfgsadf"
+    @items.each do |i|
+      puts i.created_at
+      if i.created_at > Date.yesterday
+        # @todayItems = @todayItems + i
+        puts i
+      end
+    end
     
     render json: @items
      
@@ -45,6 +54,8 @@ class ItemsController < ApplicationController
     file =Base64.encode64(File.read('tmp/storage'+@item.name))
     @item.file = file
     render json:@item 
+   
+
     # RestClient.post( 'http://localhost:3000/items/',file:file )
   end
 
