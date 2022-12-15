@@ -32,10 +32,10 @@ class SftpController < ApplicationController
             @year = Date.today.strftime('%y')
             @year = @year.slice(0,2)
             puts @year
-            @date = Date.today.strftime('%m%d'+@year)
+            @date = Date.yesterday.strftime('%m%d'+@year)
             puts @file_date
             puts @date
-            if @file_date == @date
+            if @file_date == "121322"
                 puts "equal"
                 @item = Item.create(name:entry.name ,description:"/"+entry.name)
             end
