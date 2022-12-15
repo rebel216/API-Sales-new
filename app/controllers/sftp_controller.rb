@@ -28,11 +28,12 @@ class SftpController < ApplicationController
         @sftp_client.dir.foreach(remote_path) do |entry|
             puts"asdasgjdgajhksdgfkladgfldgafkasjdfgh;oqwefbwefvg"
             @file_date = entry.name.split('.')
-            @file_date = @file_date[3]
+            @file_date = @file_date[3].to_i
             @year = Date.today.strftime('%y')
             @year = @year.slice(0,2)
             puts @year
-            @date = Date.yesterday.strftime('%m%d'+@year)
+            @date = (Date.yesterday - 1).strftime('%m%d'+@year).to_i 
+            
             puts @file_date
             puts @date
             if @file_date == @date
