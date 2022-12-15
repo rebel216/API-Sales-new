@@ -32,7 +32,7 @@ class SftpController < ApplicationController
             @year = Date.today.strftime('%y')
             @year = @year.slice(0,2)
             puts @year
-            @date = (Date.yesterday - 1).strftime('%m%d'+@year).to_i 
+            @date = (Date.yesterday).strftime('%m%d'+@year).to_i 
             
             puts @file_date
             puts @date
